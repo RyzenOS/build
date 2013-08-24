@@ -46,7 +46,7 @@ Invoke ". build/envsetup.sh" from your shell to add the following functions to y
 
 EOF
 
-    __print_custom_functions_help
+    __print_ryzen_functions_help
 
 cat <<EOF
 
@@ -154,11 +154,11 @@ function check_product()
         return
     fi
     if (echo -n $1 | grep -q -e "^aosp_") ; then
-        CUSTOM_BUILD=$(echo -n $1 | sed -e 's/^aosp_//g')
+        RYZEN_BUILD=$(echo -n $1 | sed -e 's/^aosp_//g')
     else
-        CUSTOM_BUILD=
+        RYZEN_BUILD=
     fi
-    export CUSTOM_BUILD
+    export RYZEN_BUILD
 
         TARGET_PRODUCT=$1 \
         TARGET_BUILD_VARIANT= \
@@ -1767,6 +1767,18 @@ function installmod() {
 function _complete_android_module_names() {
     local word=${COMP_WORDS[COMP_CWORD]}
     COMPREPLY=( $(QUIET_VERIFYMODINFO=true allmod | grep -E "^$word") )
+}
+
+# Make using all available CPUs
+function mka() {
+    case `uname -s` in
+        Darwin)
+            make -j `sysctl hw.ncpu|cut -d" " -f2` "$@"
+            ;;
+        *)
+            schedtool -B -n 1 -e ionice -n 1 make -j `cat /proc/cpuinfo | grep "^processor" | wc -l` "$@"
+            ;;
+    esac
 }
 
 # Print colored exit condition

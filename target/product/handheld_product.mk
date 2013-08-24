@@ -34,7 +34,7 @@ PRODUCT_PACKAGES += \
     SettingsIntelligence \
     frameworks-base-overlays
 
-ifeq ($(CUSTOM_BUILD),)
+ifeq ($(RYZEN_BUILD),)
 PRODUCT_PACKAGES += \
     Camera2 \
     LatinIME

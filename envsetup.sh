@@ -147,12 +147,12 @@ function check_product()
         echo "Couldn't locate the top of the tree.  Try setting TOP." >&2
         return
     fi
-    if (echo -n $1 | grep -q -e "^aosp_") ; then
-        CUSTOM_BUILD=$(echo -n $1 | sed -e 's/^aosp_//g')
+    if (echo -n $1 | grep -q -e "^ryzen_") ; then
+        RYZEN_BUILD=$(echo -n $1 | sed -e 's/^ryzen_//g')
     else
-        CUSTOM_BUILD=
+        RYZEN_BUILD=
     fi
-    export CUSTOM_BUILD
+    export RYZEN_BUILD
 
         TARGET_PRODUCT=$1 \
         TARGET_BUILD_VARIANT= \
@@ -1999,3 +1999,9 @@ if [ -z ${CCACHE_EXEC} ]; then
         echo -e "\e[31m\e[1mccache not found/installed!\e[0m"
     fi
 fi
+export ANDROID_BUILD_TOP=$(gettop)
+
+function repopick() {
+    T=$(gettop)
+    $T/vendor/ryzen/build/tools/repopick.py $@
+}

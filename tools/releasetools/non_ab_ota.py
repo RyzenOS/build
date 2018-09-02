@@ -227,9 +227,12 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
   device = target_info.GetBuildProp("ro.product.device")
 
   script.Print("=================================================");
-  script.Print("");
-  script.Print("                    PixelOS");
-  script.Print("");
+  script.Print("  ____                       ___  ____ ");
+  script.Print(" |  _ \ _   _ _______ _ __  / _ \/ ___|");
+  script.Print(" | |_) | | | |_  / _ \ '_ \| | | \___ \ ");
+  script.Print(" |  _ <| |_| |/ /  __/ | | | |_| |___) | ");
+  script.Print(" |_| \_\\__, /___\___|_| |_|\___/|____/ ");
+  script.Print("        |___/                           ");
   script.Print("=================================================");
   script.Print(" Android version  : %s"%(android_version));
   script.Print(" Build id         : %s"%(build_id));

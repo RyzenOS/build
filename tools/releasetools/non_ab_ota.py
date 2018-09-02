@@ -232,9 +232,22 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
   build_id = target_info.GetBuildProp("ro.build.id")
   build_date = target_info.GetBuildProp("org.pixelexperience.build_date")
   security_patch = target_info.GetBuildProp("ro.build.version.security_patch")
-  device = target_info.GetBuildProp("org.pixelexperience.device")
-  script.PrintPixelExperienceBanner(is_plus, android_version, build_id, build_date,
-                                  security_patch, device)
+  device = target_info.GetBuildProp("ro.product.device")
+
+  script.Print("=================================================");
+  script.Print("  ____                       ___  ____ ");
+  script.Print(" |  _ \ _   _ _______ _ __  / _ \/ ___|");
+  script.Print(" | |_) | | | |_  / _ \ '_ \| | | \___ \ ");
+  script.Print(" |  _ <| |_| |/ /  __/ | | | |_| |___) | ");
+  script.Print(" |_| \_\\__, /___\___|_| |_|\___/|____/ ");
+  script.Print("        |___/                           ");
+  script.Print("=================================================");
+  script.Print(" Android version  : %s"%(android_version));
+  script.Print(" Build id         : %s"%(build_id));
+  script.Print(" Build date       : %s"%(build_date));
+  script.Print(" Security patch   : %s"%(security_patch));
+  script.Print(" Device           : %s"%(device));
+  script.Print("=================================================");
 
   device_specific.FullOTA_InstallBegin()
 

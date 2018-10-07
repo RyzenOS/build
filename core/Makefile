@@ -6216,6 +6216,15 @@ otapackage: $(INTERNAL_OTA_PACKAGE_TARGET)
 ryzen: otapackage
 	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(RYZEN_TARGET_PACKAGE)
 	$(hide) $(MD5SUM) $(RYZEN_TARGET_PACKAGE) > $(RYZEN_TARGET_PACKAGE).md5sum
+	echo -e "========================================="
+	echo -e "   ____                       ___  ____ 
+	echo -e "  |  _ \ _   _ _______ _ __  / _ \/ ___|
+	echo -e "  | |_) | | | |_  / _ \ '_ \| | | \___ \
+	echo -e "  |  _ <| |_| |/ /  __/ | | | |_| |___) |
+	echo -e "  |_| \_\\__, /___\___|_| |_|\___/|____/
+	echo -e "         |___/                          
+	echo -e "========================================="
+	echo -e ""
 	@echo "**Package completed"**: $(RYZEN_TARGET_PACKAGE)"
 
 ifeq ($(BOARD_BUILD_RETROFIT_DYNAMIC_PARTITIONS_OTA_PACKAGE),true)
